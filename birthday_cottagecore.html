@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Mrs+Saint+Delafield&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ivory: #faf6ee;
+  --parchment: #f2ead8;
+  --warm: #e8dcc8;
+  --rose: #c9876a;
+  --blush: #e8b4a0;
+  --sage: #8a9e82;
+  --moss: #5c7055;
+  --brown: #6b4c3b;
+  --ink: #3a2e28;
+  --dusty: #b89c8a;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--ivory);
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='3' fill='%23c9876a' opacity='0.7'/%3E%3C/svg%3E") 10 10, auto;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+.page {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 1s ease, transform 1s ease;
+  transform: translateY(20px);
+}
+.page.active {
+  opacity: 1; pointer-events: all;
+  transform: translateY(0);
+}
+
+/* PAGE 1 */
+#page1 {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(232,220,200,0.6) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(201,135,106,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(138,158,130,0.15) 0%, transparent 50%),
+    var(--ivory);
+  overflow: hidden;
+}
+
+.botanical { position: absolute; pointer-events: none; }
+.botanical.tl { top: -10px; left: -10px; width: 280px; opacity: 0.55; }
+.botanical.br { bottom: -10px; right: -10px; width: 280px; opacity: 0.55; transform: rotate(180deg); }
+
+.petal {
+  position: absolute;
+  pointer-events: none;
+  animation: petalDrift linear infinite;
+  opacity: 0;
+}
+@keyframes petalDrift {
+  0%   { transform: translateY(-40px) translateX(0) rotate(0deg); opacity: 0; }
+  5%   { opacity: 0.7; }
+  95%  { opacity: 0.5; }
+  100% { transform: translateY(105vh) translateX(var(--drift)) rotate(var(--spin)); opacity: 0; }
+}
+
+.p1-inner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; z-index: 2;
+  text-align: center;
+}
+
+.floral-divider {
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  color: var(--sage);
+  margin: 0.4rem 0;
+  opacity: 0.8;
+  animation: fadeUp 1.2s ease 0.4s both;
+}
+
+.hb-label {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--dusty);
+  animation: fadeUp 1s ease 0.2s both;
+}
+
+.hb-title {
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(5rem, 11vw, 9.5rem);
+  color: var(--brown);
+  line-height: 0.9;
+  text-shadow: 1px 3px 30px rgba(107,76,59,0.15);
+  animation: fadeUp 1.2s cubic-bezier(0.34,1.2,0.64,1) 0.5s both;
+}
+
+.hb-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  color: var(--rose);
+  letter-spacing: 0.15em;
+  animation: fadeUp 1s ease 0.9s both;
+}
+
+.strip-outer {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 2.8rem;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 1s ease 1.1s both;
+}
+.strip-outer::before,
+.strip-outer::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 120px; z-index: 4;
+  pointer-events: none;
+}
+.strip-outer::before { left:0; background: linear-gradient(to right, var(--ivory), transparent); }
+.strip-outer::after  { right:0; background: linear-gradient(to left, var(--ivory), transparent); }
+
+.strip-track {
+  display: flex; gap: 20px;
+  animation: scroll 28s linear infinite;
+  width: max-content;
+}
+.strip-outer:hover .strip-track { animation-play-state: paused; }
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.polaroid {
+  width: 148px;
+  background: #fffdf7;
+  padding: 10px 10px 34px;  /* ← 34px bottom is the polaroid white strip */
+  box-shadow: 0 2px 8px rgba(107,76,59,0.12), 0 8px 30px rgba(107,76,59,0.08);
+  flex-shrink: 0;
+  transform: rotate(var(--tilt));
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border: 1px solid rgba(200,180,160,0.3);
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 118px;  /* ← back to original */
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.07) translateY(-6px);
+  box-shadow: 0 16px 48px rgba(107,76,59,0.2);
+  z-index: 10;
+}
+
+.next-btn {
+  position: fixed; bottom: 2.5rem; right: 2.5rem;
+  background: var(--moss);
+  color: var(--ivory);
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 6px 30px rgba(92,112,85,0.35);
+  transition: all 0.3s ease;
+  z-index: 200;
+  animation: fadeUp 1s ease 1.6s both;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.next-btn:hover { background: var(--brown); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(92,112,85,0.4); }
+.next-btn svg { transition: transform 0.3s; }
+.next-btn:hover svg { transform: translateX(5px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* PAGE 2 — ENVELOPE */
+#page2 {
+  background:
+    radial-gradient(ellipse at 25% 35%, rgba(240,228,210,0.8) 0%, transparent 55%),
+    radial-gradient(ellipse at 78% 65%, rgba(138,158,130,0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 55% 85%, rgba(201,135,106,0.1) 0%, transparent 40%),
+    var(--ivory);
+  overflow: hidden;
+}
+
+.p2-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--dusty);
+  letter-spacing: 0.12em;
+  margin-bottom: 2.8rem;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+
+.env-scene {
+  position: relative;
+  width: 460px;
+  height: 320px;
+  perspective: 900px;
+  cursor: pointer;
+  animation: fadeUp 1s cubic-bezier(0.34,1.1,0.64,1) 0.3s both;
+}
+
+.env-peek {
+  position: absolute;
+  left: 50%; bottom: 52px;
+  transform: translateX(-50%) translateY(0px);
+  width: 340px; height: 170px;
+  background: linear-gradient(175deg, #fffef8 55%, #f7edda 100%);
+  border: 1px solid rgba(205,180,148,0.55);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 -6px 24px rgba(107,76,59,0.08);
+  z-index: 1;
+  transition: transform 0.65s cubic-bezier(0.34,1.15,0.64,1);
+  overflow: hidden;
+}
+.env-scene:hover .env-peek {
+  transform: translateX(-50%) translateY(-88px);
+}
+.env-peek::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(transparent,transparent 23px,rgba(190,162,128,0.2) 23px,rgba(190,162,128,0.2) 24px);
+}
+.env-peek::after {
+  content: '';
+  position: absolute; top:0; bottom:0; left:42px;
+  width:1px; background: rgba(210,140,120,0.25);
+}
+.peek-writing {
+  position: relative; z-index:1;
+  padding: 18px 20px 0 56px;
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: 1.35rem;
+  color: var(--brown);
+  opacity: 0.65;
+  line-height: 2.1rem;
+}
+
+.env-body-wrap {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 270px;
+  z-index: 2;
+}
+
+.env-main-svg {
+  width: 100%; height: 100%;
+  filter:
+    drop-shadow(0 20px 60px rgba(107,76,59,0.22))
+    drop-shadow(0 6px 18px rgba(107,76,59,0.14))
+    drop-shadow(0 2px 4px rgba(107,76,59,0.08));
+  transition: filter 0.4s ease;
+  overflow: visible;
+}
+.env-scene:hover .env-main-svg {
+  filter:
+    drop-shadow(0 28px 70px rgba(107,76,59,0.28))
+    drop-shadow(0 8px 24px rgba(107,76,59,0.16));
+}
+
+.env-flap-g {
+  transform-origin: 230px 0px;
+  transform-box: fill-box;
+  transition: transform 0.75s cubic-bezier(0.34,1.05,0.64,1);
+}
+.env-scene:hover .env-flap-g {
+  transform: rotateX(-178deg);
+}
+
+.wax-wrap {
+  position: absolute;
+  bottom: 110px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  transition: transform 0.5s cubic-bezier(0.34,1.1,0.64,1), opacity 0.4s ease;
+  cursor: pointer;
+}
+.env-scene:hover .wax-wrap {
+  transform: translateX(-50%) translateY(-78px) scale(0.78);
+  opacity: 0;
+}
+
+.open-hint {
+  margin-top: 2.8rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--dusty);
+  animation: breathe 3s ease infinite;
+}
+@keyframes breathe { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+.back-btn {
+  position: fixed; bottom: 2.5rem; left: 2.5rem;
+  background: transparent;
+  border: 1px solid var(--warm);
+  color: var(--dusty);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300; font-size: 0.78rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 0.8rem 1.8rem; border-radius: 50px;
+  cursor: pointer; transition: all 0.3s; z-index: 200;
+}
+.back-btn:hover { background: var(--warm); color: var(--brown); }
+
+/* PAGE 3 — LETTER */
+#page3 {
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(232,220,200,0.6) 0%, transparent 55%),
+    var(--ivory);
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding: 3rem 1rem 5rem;
+  align-items: center;
+}
+
+.letter-wrap {
+  max-width: 660px; width: 100%;
+  animation: unfold 0.9s cubic-bezier(0.34,1.1,0.64,1) both;
+}
+@keyframes unfold {
+  from { opacity: 0; transform: scaleY(0.2) translateY(-30px); transform-origin: top; }
+  to   { opacity: 1; transform: scaleY(1) translateY(0); }
+}
+
+.letter-paper {
+  background:
+    repeating-linear-gradient(transparent, transparent 31px, rgba(190,165,135,0.22) 31px, rgba(190,165,135,0.22) 32px),
+    linear-gradient(170deg, #fffef8 0%, #fdf7ec 100%);
+  padding: 4rem 4.5rem 4rem 5.5rem;
+  position: relative;
+  box-shadow:
+    0 2px 4px rgba(107,76,59,0.06),
+    0 12px 60px rgba(107,76,59,0.1),
+    0 40px 80px rgba(107,76,59,0.06);
+  border: 1px solid rgba(210,190,165,0.4);
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: 4rem;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 5%, rgba(220,140,120,0.3) 15%, rgba(220,140,120,0.3) 85%, transparent 95%);
+}
+
+.letter-date {
+  text-align: right;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--dusty);
+  margin-bottom: 2.4rem;
+  letter-spacing: 0.05em;
+}
+
+.letter-salutation {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 2rem;
+  color: var(--brown);
+  margin-bottom: 1.2rem;
+  line-height: 1;
+}
+
+.letter-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.12rem;
+  font-weight: 300;
+  line-height: 2rem;
+  color: var(--ink);
+}
+.letter-body p { margin-bottom: 1.4rem; white-space: pre-line; }
+.letter-body em { color: var(--rose); font-style: italic; }
+
+.letter-closer {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--dusty);
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.letter-sign {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--brown);
+  line-height: 1.8;
+  margin-top: 0.4rem;
+}
+
+.letter-deco {
+  margin-top: 1.8rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.5em;
+  color: var(--sage);
+  opacity: 0.7;
+}
+
+.letter-corner {
+  position: absolute;
+  bottom: -8px; left: -8px;
+  width: 140px; opacity: 0.35;
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+
+  <svg class="botanical tl" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="40" cy="220" rx="18" ry="52" fill="#8a9e82" opacity=".45" transform="rotate(-40 40 220)"/>
+    <ellipse cx="70" cy="200" rx="14" ry="45" fill="#b5c9b0" opacity=".4" transform="rotate(-20 70 200)"/>
+    <ellipse cx="20" cy="180" rx="12" ry="38" fill="#6d8e66" opacity=".35" transform="rotate(-55 20 180)"/>
+    <ellipse cx="110" cy="240" rx="22" ry="16" fill="#c9a882" opacity=".3" transform="rotate(10 110 240)"/>
+    <ellipse cx="55" cy="140" rx="30" ry="20" fill="#e8b4a0" opacity=".35" transform="rotate(-30 55 140)"/>
+    <ellipse cx="90" cy="170" rx="26" ry="18" fill="#d4b896" opacity=".3" transform="rotate(15 90 170)"/>
+    <circle cx="60" cy="130" r="8" fill="#c9876a" opacity=".45"/>
+    <circle cx="95" cy="155" r="6" fill="#e8c4a8" opacity=".5"/>
+    <circle cx="30" cy="160" r="5" fill="#b5c9b0" opacity=".5"/>
+    <path d="M20,260 Q80,180 140,120" stroke="#8a9e82" stroke-width="1.5" fill="none" opacity=".3"/>
+    <path d="M10,240 Q60,200 100,160" stroke="#b5c9b0" stroke-width="1" fill="none" opacity=".3"/>
+  </svg>
+
+  <svg class="botanical br" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="40" cy="220" rx="18" ry="52" fill="#8a9e82" opacity=".45" transform="rotate(-40 40 220)"/>
+    <ellipse cx="70" cy="200" rx="14" ry="45" fill="#b5c9b0" opacity=".4" transform="rotate(-20 70 200)"/>
+    <ellipse cx="20" cy="180" rx="12" ry="38" fill="#6d8e66" opacity=".35" transform="rotate(-55 20 180)"/>
+    <ellipse cx="110" cy="240" rx="22" ry="16" fill="#c9a882" opacity=".3" transform="rotate(10 110 240)"/>
+    <ellipse cx="55" cy="140" rx="30" ry="20" fill="#e8b4a0" opacity=".35" transform="rotate(-30 55 140)"/>
+    <circle cx="60" cy="130" r="8" fill="#c9876a" opacity=".45"/>
+    <path d="M20,260 Q80,180 140,120" stroke="#8a9e82" stroke-width="1.5" fill="none" opacity=".3"/>
+  </svg>
+
+  <div class="p1-inner">
+    <div class="hb-label">a little something for you</div>
+    <div class="floral-divider">⸻ 𖦹 ⸻</div>
+    <div class="hb-title">Happy Birthday Vals!</div>
+    <div class="floral-divider" style="margin-top:0.6rem">⸻ 𖦹 ⸻</div>
+    <div class="hb-name">wishing you a day only filled with joy & everything you love</div>
+    <div class="strip-outer">
+      <div class="strip-track" id="strip"></div>
+    </div>
+  </div>
+
+  <div id="petals-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;"></div>
+
+  <button class="next-btn" onclick="goTo(2)">
+    open a letter
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+  <div class="p2-tagline">with all the love i have for you</div>
+
+  <div class="env-scene" onclick="goTo(3)">
+
+    <div class="env-peek">
+      <div class="peek-writing">
+        my dearest vals,<br>
+        happy birthday…
+      </div>
+    </div>
+
+    <div class="env-body-wrap">
+      <svg class="env-main-svg" viewBox="0 0 460 270" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="eBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f8eed8"/>
+            <stop offset="100%" stop-color="#ede0c4"/>
+          </linearGradient>
+          <linearGradient id="eLeft" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#cfc0a0"/>
+            <stop offset="100%" stop-color="#e8d8bc" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="eRight" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0%" stop-color="#cfc0a0"/>
+            <stop offset="100%" stop-color="#e8d8bc" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="eBot" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ddd0b0"/>
+            <stop offset="100%" stop-color="#ccc0a0"/>
+          </linearGradient>
+          <linearGradient id="eFlap" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#f0e2c8"/>
+            <stop offset="60%" stop-color="#e8d6b8"/>
+            <stop offset="100%" stop-color="#ddd0b0"/>
+          </linearGradient>
+          <linearGradient id="eFlapInner" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fdf8f0"/>
+            <stop offset="100%" stop-color="#f5ead8"/>
+          </linearGradient>
+          <filter id="paper" x="-5%" y="-5%" width="110%" height="110%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
+            <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+            <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+            <feComponentTransfer in="blend">
+              <feFuncA type="linear" slope="1"/>
+            </feComponentTransfer>
+          </filter>
+          <filter id="foldShadow">
+            <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#6b4c3b" flood-opacity="0.15"/>
+          </filter>
+        </defs>
+
+        <rect x="1" y="1" width="458" height="268" rx="6" fill="url(#eBody)" stroke="#c4ae8a" stroke-width="1.2" filter="url(#paper)"/>
+        <polygon points="1,1 1,269 210,140" fill="url(#eLeft)" opacity="0.55"/>
+        <line x1="1" y1="1" x2="210" y2="140" stroke="#b8a888" stroke-width="0.6" opacity="0.5"/>
+        <polygon points="459,1 459,269 250,140" fill="url(#eRight)" opacity="0.55"/>
+        <line x1="459" y1="1" x2="250" y2="140" stroke="#b8a888" stroke-width="0.6" opacity="0.5"/>
+        <polygon points="1,269 230,138 459,269" fill="url(#eBot)" filter="url(#foldShadow)"/>
+        <line x1="1" y1="269" x2="230" y2="138" stroke="#a89878" stroke-width="0.6" opacity="0.5"/>
+        <line x1="459" y1="269" x2="230" y2="138" stroke="#a89878" stroke-width="0.6" opacity="0.5"/>
+
+        <g opacity="0.22" transform="translate(28, 190) rotate(-35)">
+          <ellipse cx="0" cy="-28" rx="9" ry="18" fill="#7a9472"/>
+          <ellipse cx="-9" cy="-18" rx="7" ry="13" fill="#9ab494"/>
+          <ellipse cx="9" cy="-22" rx="6" ry="11" fill="#6a8464"/>
+          <ellipse cx="-5" cy="-8" rx="8" ry="12" fill="#8aaa84"/>
+          <line x1="0" y1="0" x2="0" y2="-50" stroke="#5c7055" stroke-width="1.2"/>
+          <ellipse cx="16" cy="-36" rx="10" ry="7" fill="#c9876a" opacity="0.6" transform="rotate(25 16 -36)"/>
+          <ellipse cx="-14" cy="-42" rx="8" ry="6" fill="#e8b4a0" opacity="0.5" transform="rotate(-20 -14 -42)"/>
+        </g>
+        <g opacity="0.22" transform="translate(432, 190) rotate(35)">
+          <ellipse cx="0" cy="-28" rx="9" ry="18" fill="#7a9472"/>
+          <ellipse cx="-9" cy="-18" rx="7" ry="13" fill="#9ab494"/>
+          <ellipse cx="9" cy="-22" rx="6" ry="11" fill="#6a8464"/>
+          <ellipse cx="-5" cy="-8" rx="8" ry="12" fill="#8aaa84"/>
+          <line x1="0" y1="0" x2="0" y2="-50" stroke="#5c7055" stroke-width="1.2"/>
+          <ellipse cx="-16" cy="-36" rx="10" ry="7" fill="#c9876a" opacity="0.6" transform="rotate(-25 -16 -36)"/>
+        </g>
+        <g opacity="0.18" transform="translate(230, 230)">
+          <ellipse cx="-20" cy="0" rx="6" ry="10" fill="#8a9e82" transform="rotate(-40 -20 0)"/>
+          <ellipse cx="20" cy="0" rx="6" ry="10" fill="#8a9e82" transform="rotate(40 20 0)"/>
+          <ellipse cx="0" cy="-18" rx="6" ry="10" fill="#c9876a" opacity="0.7"/>
+          <circle cx="0" cy="0" r="4" fill="#e8c4a0"/>
+        </g>
+
+        <g class="env-flap-g">
+          <polygon points="1,1 230,148 459,1" fill="url(#eFlap)" stroke="#c4ae8a" stroke-width="1.2"/>
+          <polygon points="1,1 230,148 459,1 459,12 230,155 1,12" fill="rgba(100,75,50,0.06)"/>
+          <g opacity="0.2" transform="translate(90, 55) rotate(-15)">
+            <ellipse cx="0" cy="-16" rx="7" ry="14" fill="#7a9472"/>
+            <ellipse cx="-7" cy="-10" rx="5" ry="10" fill="#9ab494"/>
+            <ellipse cx="7" cy="-12" rx="5" ry="9" fill="#6a8464"/>
+            <line x1="0" y1="0" x2="0" y2="-35" stroke="#5c7055" stroke-width="1"/>
+          </g>
+          <g opacity="0.2" transform="translate(370, 55) rotate(15)">
+            <ellipse cx="0" cy="-16" rx="7" ry="14" fill="#7a9472"/>
+            <ellipse cx="-7" cy="-10" rx="5" ry="10" fill="#9ab494"/>
+            <ellipse cx="7" cy="-12" rx="5" ry="9" fill="#6a8464"/>
+            <line x1="0" y1="0" x2="0" y2="-35" stroke="#5c7055" stroke-width="1"/>
+          </g>
+          <polygon points="1,1 230,148 459,1" fill="url(#eFlapInner)" opacity="0"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="wax-wrap">
+      <svg width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 6px 20px rgba(140,50,30,0.45)) drop-shadow(0 2px 6px rgba(0,0,0,0.15))">
+        <defs>
+          <radialGradient id="wx" cx="38%" cy="32%" r="65%">
+            <stop offset="0%" stop-color="#d9806a"/>
+            <stop offset="45%" stop-color="#c05840"/>
+            <stop offset="100%" stop-color="#8c2e18"/>
+          </radialGradient>
+          <radialGradient id="wxShine" cx="30%" cy="25%" r="55%">
+            <stop offset="0%" stop-color="rgba(255,220,200,0.5)"/>
+            <stop offset="100%" stop-color="rgba(255,200,170,0)"/>
+          </radialGradient>
+        </defs>
+        <path d="M44,4 C52,2 62,8 68,14 C76,20 82,30 84,40 C86,52 80,64 72,72 C64,80 52,86 42,84 C30,82 18,76 12,66 C6,56 6,42 10,32 C14,20 24,10 34,6 C38,4 40,4.5 44,4Z" fill="url(#wx)"/>
+        <path d="M44,4 C52,2 62,8 68,14 C76,20 82,30 84,40 C86,52 80,64 72,72 C64,80 52,86 42,84 C30,82 18,76 12,66 C6,56 6,42 10,32 C14,20 24,10 34,6 C38,4 40,4.5 44,4Z" fill="url(#wxShine)"/>
+        <circle cx="44" cy="44" r="28" fill="none" stroke="rgba(255,230,210,0.25)" stroke-width="2"/>
+        <circle cx="44" cy="44" r="22" fill="none" stroke="rgba(255,230,210,0.18)" stroke-width="1"/>
+        <circle cx="44" cy="44" r="5" fill="rgba(255,230,210,0.55)"/>
+        <ellipse cx="44" cy="32" rx="3.5" ry="6" fill="rgba(255,230,210,0.45)"/>
+        <ellipse cx="44" cy="56" rx="3.5" ry="6" fill="rgba(255,230,210,0.45)"/>
+        <ellipse cx="32" cy="44" rx="6" ry="3.5" fill="rgba(255,230,210,0.45)"/>
+        <ellipse cx="56" cy="44" rx="6" ry="3.5" fill="rgba(255,230,210,0.45)"/>
+        <ellipse cx="35.5" cy="35.5" rx="3" ry="5.5" fill="rgba(255,230,210,0.35)" transform="rotate(-45 35.5 35.5)"/>
+        <ellipse cx="52.5" cy="52.5" rx="3" ry="5.5" fill="rgba(255,230,210,0.35)" transform="rotate(-45 52.5 52.5)"/>
+        <ellipse cx="52.5" cy="35.5" rx="3" ry="5.5" fill="rgba(255,230,210,0.35)" transform="rotate(45 52.5 35.5)"/>
+        <ellipse cx="35.5" cy="52.5" rx="3" ry="5.5" fill="rgba(255,230,210,0.35)" transform="rotate(45 35.5 52.5)"/>
+        <ellipse cx="44" cy="26" rx="2" ry="4" fill="rgba(180,220,170,0.4)"/>
+        <ellipse cx="44" cy="62" rx="2" ry="4" fill="rgba(180,220,170,0.4)"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <div class="open-hint">tap to unseal ✦</div>
+  <button class="back-btn" onclick="goTo(1)">← back</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+  <div class="letter-wrap">
+    <div class="letter-paper">
+      <div class="letter-date" id="letter-date"></div>
+      <div class="letter-salutation">My dearest Vals,</div>
+      <div class="letter-body">
+        <p>Where do I even start?
+First of all, a very, very, very happy birthday to my favorite person. ❤️
+I genuinely hate not being there with you today. If there is one thing I would change about adult life, it would be this, the distance. I hate that we've reached this phase where responsibilities, jobs, countries, and time zones get in the way of moments we should be celebrating together. But I guess that's what adulting is, and honestly, I hate it.
+Now let me talk about something I absolutely love YOU.
+If someone had told me years ago that the girl I once thought was way out of my league to be friends with would become one of the most important people in my life, I would've laughed. Yet here we are. Somewhere along the way, you became my safe space, my constant, my home away from home.
+We've had our ups and downs, disagreements, phases where we annoyed each other, but somehow we always found our way back. And I think that's the beauty of us. No matter what happens, we're always on the same team.
+Thank you for staying. Thank you for loving me through all versions of me, the dramatic one, the emotional one, the stubborn one, and especially the one who can be a complete asshole sometimes. Thank you for never making me feel like I'm too much.
+And yes, thank you for not picking up my FaceTimes on the first ring but always calling back when you can. I know, I know, you have a real grown-up job and an actual life. But you have no idea how much those random five-minute calls mean to me. Sometimes they become the best part of my day.
+You have this incredible way of making people feel seen, heard, and loved. You remind me that genuinely good people still exist. Not people who tell you what you want to hear, but people who love you enough to tell you the truth. And that's one of the things I admire most about you.
+Living in the US has taught me a lot, but more than anything, it has made me realize how much I miss having you around. Every new experience, every funny story, every exciting moment somehow ends with me thinking, "God, Vals would've loved this." No day goes by without me thinking about you. The truth is, no matter how exciting life gets, a part of me always wishes I could share those moments with you in person.
+I don't know if I say this enough, but I genuinely don't know what I did to deserve a best friend like you. Thank you for choosing me, for understanding me, for supporting me, and for making my life infinitely better just by being in it.
+And of course, thank you for letting me become part of your family. At this point, I think we can all agree I'm the favorite child. 😌
+I cannot wait to see you again. I cannot wait to hug you so tight that you complain about not being able to breathe. I cannot wait to smother you with all my gilli pucchis and make up for every birthday, celebration, and moment we've missed.
+I'm literally crying while writing this, which is annoying because I wanted to sound cool.
+I love you more than words will ever be able to express. You are one of the greatest blessings in my life, and no amount of distance, time zones, or adult responsibilities will ever change that.
+Now please earn enough money and come to the USA soon because I am tired of loving you through a screen.
+Until then, I'll be waiting for your FaceTime calls.</p>
+      </div>
+      <div class="letter-closer">Happy Birthday, my person</div>
+      <div class="letter-sign">Love you always and forever<br>Durva 💕</div>
+      <div class="letter-deco">⸻ 𖦹 ⸻</div>
+      <svg class="letter-corner" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="20" cy="110" rx="10" ry="30" fill="#8a9e82" opacity=".5" transform="rotate(-40 20 110)"/>
+        <ellipse cx="45" cy="95" rx="8" ry="26" fill="#b5c9b0" opacity=".45" transform="rotate(-20 45 95)"/>
+        <ellipse cx="10" cy="90" rx="7" ry="22" fill="#6d8e66" opacity=".4" transform="rotate(-55 10 90)"/>
+        <circle cx="35" cy="68" r="6" fill="#c9876a" opacity=".4"/>
+        <circle cx="55" cy="82" r="4" fill="#e8c4a8" opacity=".45"/>
+      </svg>
+    </div>
+  </div>
+  <button class="back-btn" onclick="goTo(2)" style="bottom:2.5rem;left:2.5rem;position:fixed;">← back</button>
+</div>
+
+<script>
+function goTo(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page' + n).classList.add('active');
+}
+
+document.getElementById('letter-date').textContent = '28th June 2026';
+
+const container = document.getElementById('petals-container');
+const petalShapes = ['🌸','🌺','🌼','🍃','🌿','✿'];
+for (let i = 0; i < 22; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  const drift = (Math.random() - 0.5) * 200;
+  const spin = Math.random() * 720 - 360;
+  p.style.cssText = `
+    left: ${Math.random() * 100}%;
+    font-size: ${Math.random() * 10 + 10}px;
+    --drift: ${drift}px;
+    --spin: ${spin}deg;
+    animation-duration: ${Math.random() * 12 + 10}s;
+    animation-delay: ${Math.random() * -20}s;
+    filter: saturate(0.6) sepia(0.2);
+  `;
+  p.textContent = petalShapes[Math.floor(Math.random() * petalShapes.length)];
+  container.appendChild(p);
+}
+
+const photos = [
+  { img:'./img/1.jpg' },
+  { img:'./img/2.jpg' },
+  { img:'./img/3.jpg' },
+  { img:'./img/4.jpg' },
+  { img:'./img/5.jpg' },
+  { img:'./img/6.jpg' },
+];
+
+const tilts = [-4, -2, 1, 3, -3, 2];
+const track = document.getElementById('strip');
+[...photos, ...photos].forEach((ph, i) => {
+  const card = document.createElement('div');
+  card.className = 'polaroid';
+  card.style.setProperty('--tilt', tilts[i % tilts.length] + 'deg');
+  card.innerHTML = `
+    <div class="polaroid-img" style="background:#f5f0e8;overflow:hidden;">
+      <img src="${ph.img}" style="width:100%;height:100%;object-fit:cover;border-radius:2px;">
+    </div>
+  `;
+  track.appendChild(card);
+});
+</script>
+</body>
+</html>
